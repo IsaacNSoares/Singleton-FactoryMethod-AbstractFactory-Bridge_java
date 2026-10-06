@@ -1,32 +1,23 @@
 package org.example;
 
-public class FabricaPeca implements FabricaAbstrata {
-
+public class FabricaPeca {
     private FabricaPeca() {};
     private static FabricaPeca instance = new FabricaPeca();
     public static FabricaPeca getInstance() {
         return instance;
     }
-
-    public static IPeca produzirPeca(String peca) {
+    public FabricaAbstrata obterFabrica(String fabrica) {
         Class classe = null;
         Object objeto = null;
         try {
-            classe = Class.forName("org.example." + peca);
+            classe = Class.forName("org.example.Fabrica" + fabrica);
             objeto = classe.newInstance();
         } catch (Exception ex) {
-            throw new IllegalArgumentException("Peça inexistente");
+            throw new IllegalArgumentException("Fábrica inexistente");
         }
-        return (IPeca) objeto;
+        if (!(objeto instanceof FabricaAbstrata)) {
+            throw new IllegalArgumentException("Fábrica inválida");
+        }
+        return (FabricaAbstrata) objeto;
     }
-    @Override
-    public Direcao produzirDirecao() {
-        return (Direcao) produzirPeca("Direcao");
-    }
-
-    @Override
-    public Pneu produzirPneu() {
-        return (Pneu) produzirPeca("Pneu");
-    }
-
 }

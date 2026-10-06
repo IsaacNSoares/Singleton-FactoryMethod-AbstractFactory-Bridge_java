@@ -1,18 +1,11 @@
 package org.example;
 
 public class Moto extends Veiculo {
-
-    public Moto(FabricaAbstrata fabrica) {
-        super(fabrica);
+    public Moto(IPeca peca) {
+        super(peca);
     }
 
-    @Override
-    public String produzirDirecao() {
-        return "Montagem da Moto: " + this.direcao.produzir();
-    }
-
-    @Override
-    public String produzirPneu() {
-        return "Montagem da Moto: " + this.pneu.produzir();
+    public String montar() {
+        return "Moto pronta com: " + this.peca.produzir();
     }
 }

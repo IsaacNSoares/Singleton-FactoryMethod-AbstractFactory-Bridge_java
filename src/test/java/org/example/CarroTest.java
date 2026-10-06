@@ -3,26 +3,26 @@ package org.example;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class CarroTest {
+public class CarroTest {
 
     @Test
-    void deveProduzirDirecaoCarro() {
-        FabricaAbstrata fabrica = FabricaPeca.getInstance();
-        Veiculo carro = new Carro(fabrica);
-        assertEquals("Montagem do Carro: Direção produzida", carro.produzirDirecao());
+    void deveRetornarMontagemCarroPneu() {
+        FabricaAbstrata fabrica = FabricaPeca.getInstance().obterFabrica("Pneu");
+        Veiculo veiculo = fabrica.produzirCarro();
+        assertEquals("Carro pronto com: Pneus instalados", veiculo.montar());
     }
 
     @Test
-    void deveProduzirPneuCarro() {
-        FabricaAbstrata fabrica = FabricaPeca.getInstance();
-        Veiculo carro = new Carro(fabrica);
-        assertEquals("Montagem do Carro: Pneu produzido", carro.produzirPneu());
+    void deveRetornarMontagemCarroMotor() {
+        FabricaAbstrata fabrica = FabricaPeca.getInstance().obterFabrica("Motor");
+        Veiculo veiculo = fabrica.produzirCarro();
+        assertEquals("Carro pronto com: Motor V8 instalado", veiculo.montar());
     }
 
     @Test
-    void deveLancarExcecaoAoTentarCriarCarroComFabricaNula() {
-        assertThrows(NullPointerException.class, () -> {
-            new Carro(null);
-        });
+    void deveRetornarMontagemCarroDirecao() {
+        FabricaAbstrata fabrica = FabricaPeca.getInstance().obterFabrica("Direcao");
+        Veiculo veiculo = fabrica.produzirCarro();
+        assertEquals("Carro pronto com: Direção instalada", veiculo.montar());
     }
 }

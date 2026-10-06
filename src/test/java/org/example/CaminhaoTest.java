@@ -3,26 +3,26 @@ package org.example;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class CaminhaoTest {
+public class CaminhaoTest {
 
     @Test
-    void deveProduzirDirecaoCaminhao() {
-        FabricaAbstrata fabrica = FabricaPeca.getInstance();
-        Veiculo caminhao = new Caminhao(fabrica);
-        assertEquals("Montagem do Caminhão: Direção produzida", caminhao.produzirDirecao());
+    void deveRetornarMontagemCaminhaoPneu() {
+        FabricaAbstrata fabrica = FabricaPeca.getInstance().obterFabrica("Pneu");
+        Veiculo veiculo = fabrica.produzirCaminhao();
+        assertEquals("Caminhão pronto com: Pneus instalados", veiculo.montar());
     }
 
     @Test
-    void deveProduzirPneuCaminhao() {
-        FabricaAbstrata fabrica = FabricaPeca.getInstance();
-        Veiculo caminhao = new Caminhao(fabrica);
-        assertEquals("Montagem do Caminhão: Pneu produzido", caminhao.produzirPneu());
+    void deveRetornarMontagemCaminhaoMotor() {
+        FabricaAbstrata fabrica = FabricaPeca.getInstance().obterFabrica("Motor");
+        Veiculo veiculo = fabrica.produzirCaminhao();
+        assertEquals("Caminhão pronto com: Motor V8 instalado", veiculo.montar());
     }
 
     @Test
-    void deveLancarExcecaoAoTentarCriarCaminhaoComFabricaNula() {
-        assertThrows(NullPointerException.class, () -> {
-            new Caminhao(null);
-        });
+    void deveRetornarMontagemCaminhaoDirecao() {
+        FabricaAbstrata fabrica = FabricaPeca.getInstance().obterFabrica("Direcao");
+        Veiculo veiculo = fabrica.produzirCaminhao();
+        assertEquals("Caminhão pronto com: Direção instalada", veiculo.montar());
     }
 }

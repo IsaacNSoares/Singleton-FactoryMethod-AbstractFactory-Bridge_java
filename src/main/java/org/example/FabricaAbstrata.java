@@ -1,6 +1,7 @@
 package org.example;
 
 public interface FabricaAbstrata {
-    Direcao produzirDirecao();
-    Pneu produzirPneu();
+    Veiculo produzirCarro();
+    Veiculo produzirMoto();
+    Veiculo produzirCaminhao();
 }

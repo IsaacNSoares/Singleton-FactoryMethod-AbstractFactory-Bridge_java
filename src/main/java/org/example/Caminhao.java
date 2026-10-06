@@ -1,18 +1,11 @@
 package org.example;
 
 public class Caminhao extends Veiculo {
-
-    public Caminhao(FabricaAbstrata fabrica) {
-        super(fabrica);
+    public Caminhao(IPeca peca) {
+        super(peca);
     }
 
-    @Override
-    public String produzirDirecao() {
-        return "Montagem do Caminhão: " + this.direcao.produzir();
-    }
-
-    @Override
-    public String produzirPneu() {
-        return "Montagem do Caminhão: " + this.pneu.produzir();
+    public String montar() {
+        return "Caminhão pronto com: " + this.peca.produzir();
     }
 }
